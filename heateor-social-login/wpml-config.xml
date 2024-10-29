@@ -10,4 +10,18 @@
             <key name="ppu_placeholder" />
         </key>
     </admin-texts>
+    <shortcodes>
+        <shortcode>
+            <tag>Heateor_Social_Login</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>Heateor_Social_Linking</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+    </shortcodes>
 </wpml-config>

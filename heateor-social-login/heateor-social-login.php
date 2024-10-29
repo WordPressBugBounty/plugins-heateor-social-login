@@ -6,7 +6,7 @@
  * Plugin Name:       Heateor Social Login
  * Plugin URI:        https://www.heateor.com
  * Description:       Allow website visitors to login with their accounts on Facebook, Twitter, Linkedin, Google, Vkontakte, Steam, Instagram, Line, Microsoft, WordPress, Yahoo, Dribbble, Spotify, Kakao, Twitch, Github, Disqus, Reddit, Dropbox, Foursquare, Discord, Stack Overflow, Amazon and Mail.ru easiest possible way
- * Version:           1.1.35
+ * Version:           1.1.36
  * Author:            Team Heateor
  * Author URI:        https://www.heateor.com
  * Text Domain:       heateor-social-login
@@ -20,7 +20,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'HEATEOR_SOCIAL_LOGIN_VERSION', '1.1.35' );
+define( 'HEATEOR_SOCIAL_LOGIN_VERSION', '1.1.36' );
 define( 'HEATEOR_SL_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
 // initialize variable for Steam login

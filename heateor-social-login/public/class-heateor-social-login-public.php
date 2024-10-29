@@ -625,17 +625,15 @@ class Heateor_Social_Login_Public {
 			    }
 			    // vkontakte
 			} elseif ( sanitize_text_field( $_GET['HeateorSlAuth'] ) == 'Vkontakte' ) {
-				require_once plugin_dir_path( dirname( __FILE__ ) ) .'library/Vkontakte/Vkontakte.php';
-				$heateor_sl_vkontakte = new Vkontakte( array(
-				    'client_id' => $this->options['vk_key'],
-				    'client_secret' => $this->options['vk_secure_key'],
-				    'redirect_uri' => esc_url( home_url() )
-				) );
-				$heateor_sl_vkontakte->setScope( array( 'email' ) );
-				$this->php_session_start_resume();
-				$_SESSION['heateor_sl_vkontakte_redirect'] = isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url();
-				wp_redirect( $heateor_sl_vkontakte->getLoginUrl() );
-				die;
+				if ( isset( $this->options['providers'] ) && in_array( 'vkontakte', $this->options['providers'] ) && isset( $this->options['vk_key'] ) && $this->options['vk_key'] != '' && isset( $this->options['vk_secure_key'] ) && $this->options['vk_secure_key'] != '' ) {
+			    	if ( ! isset( $_GET['code'] ) ) {
+						$vk_login_state = mt_rand();
+						// save referrer url in state
+						update_user_meta( $vk_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
+					}
+					wp_redirect( "https://oauth.vk.com/authorize?client_id=" . $this->options['vk_key'] . "&display=page&scope=email&response_type=code&v=5.131&state=" . $vk_login_state . "&redirect_uri=" . $site_url_for_callback );
+					die;
+				}
 			}
 		}
 
@@ -2165,53 +2163,59 @@ class Heateor_Social_Login_Public {
 
 		// Vkontakte
 		if ( ( isset( $_GET['code'] ) && ! isset( $_GET['HeateorSlAuth'] ) ) && ( isset( $this->options['providers'] ) && in_array( 'vkontakte', $this->options['providers'] ) && isset( $this->options['vk_key'] ) && $this->options['vk_key'] != '' && isset( $this->options['vk_secure_key'] ) && $this->options['vk_secure_key'] != '' ) ) {
-			require_once plugin_dir_path( dirname( __FILE__ ) ) .'library/Vkontakte/Vkontakte.php';
-			$heateor_sl_vkontakte = new Vkontakte( array(
-			    'client_id' => $this->options['vk_key'],
-			    'client_secret' => $this->options['vk_secure_key'],
-			    'redirect_uri' => esc_url( home_url() )
-			) );
-			$heateor_sl_vkontakte->setScope( array( 'email' ) );
-			if ( isset( $heateor_sl_vkontakte ) ) {
-				$heateor_sl_vkontakte->authenticate( $_GET['code'] );
-				$user_id = $heateor_sl_vkontakte->getUserId();
-				$email = $heateor_sl_vkontakte->getUserEmail();
-				if ( $user_id ) {
-					$users = $heateor_sl_vkontakte->api( 'users.get', array(
-					    'user_id' => $user_id,
-					    'fields' => array( 'first_name', 'last_name', 'nickname', 'screen_name', 'photo_rec', 'photo_big' )
-					) );
-					if ( isset( $users[0] ) && isset( $users[0]["id"] ) && $users[0]["id"] ) {
-						$profile_data = $this->sanitize_profile_data( $users[0], 'vkontakte' );
-						$profile_data['email'] = '';
-						if ( $email ) {
-							$profile_data['email'] = sanitize_email( $email );
-						}
-						if ( isset( $_GET['heateorMSEnabled'] ) ) {
-							$profile_data['mc_subscribe'] = 1;
-						}
-						$this->php_session_start_resume();
-						$vkontakte_redirect_url = isset( $_SESSION['heateor_sl_vkontakte_redirect'] )  && $_SESSION['heateor_sl_vkontakte_redirect'] ? esc_url( trim( $_SESSION['heateor_sl_vkontakte_redirect'] ) ) : home_url();
-						$response = $this->user_auth( $profile_data, 'vkontakte', $vkontakte_redirect_url );
-						if ( $response == 'show form' ) {
-							return;
-						}
-		                $this->unset_php_session( 'heateor_sl_vkontakte_redirect' );
-						if ( is_array( $response ) && isset( $response['message'] ) && $response['message'] == 'register' && ( ! isset( $response['url'] ) || $response['url'] == '' ) ) {
-							$redirect_to = $this->get_login_redirection_url( $vkontakte_redirect_url, true );
-						} elseif ( isset( $response['message'] ) && $response['message'] == 'linked' ) {
-							$redirect_to = $vkontakte_redirect_url . ( strpos( $vkontakte_redirect_url, '?' ) !== false ? '&' : '?' ) . 'linked=1';
-						} elseif ( isset( $response['message'] ) && $response['message'] == 'not linked' ) {
-							$redirect_to = $vkontakte_redirect_url . ( strpos( $vkontakte_redirect_url, '?' ) !== false ? '&' : '?' ) . 'linked=0';
-						} elseif ( isset( $response['url'] ) && $response['url'] != '' ) {
-							$redirect_to = $response['url'];
-						} else {
-							$redirect_to = $this->get_login_redirection_url( $vkontakte_redirect_url );
-						}
-						$this->close_login_popup( $redirect_to );
-					}
-				}
-			}
+			$vk_login_state  = esc_attr( trim( $_GET['state'] ) );
+			if ( ( $vk_redirect_url = get_user_meta( $vk_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
+		    	return;
+		    }
+		    $post_data = array(
+		        'code' => esc_attr( trim( $_GET['code'] ) ),
+		        'redirect_uri' => home_url(),
+		        'client_id' => $this->options['vk_key'],
+		        'client_secret' => $this->options['vk_secure_key'] 
+		    );
+		    $response = wp_remote_post( "https://oauth.vk.com/access_token", array(
+		        'method' => 'POST',
+		        'timeout' => 15,
+		        'redirection' => 5,
+		        'httpversion' => '1.0',
+		        'sslverify' => false,
+		        'headers' => array(
+		             'Content-Type' => 'application/x-www-form-urlencoded' 
+		        ),
+		        'body' => http_build_query( $post_data ) 
+		    ) );
+
+		    if ( ! is_wp_error( $response ) && isset( $response['response']['code'] ) && 200 === $response['response']['code'] ) {
+		        $body     = json_decode( wp_remote_retrieve_body( $response ) );
+		        $response = wp_remote_get( "https://api.vk.com/method/users.get?user_id=" . $body->user_id . "&fields=first_name,last_name,nickname,screen_name,photo_rec,photo_big,verified&v=5.199&access_token=" . $body->access_token, array(
+			            'timeout' => 15 
+			        )
+		    	);
+		    	if ( ! is_wp_error( $response ) && isset( $response['response']['code'] ) && 200 === $response['response']['code'] ) {
+		            $profile_data = json_decode( wp_remote_retrieve_body( $response ) );
+		            if ( is_object( $profile_data ) && isset( $profile_data->response ) && is_array( $profile_data->response ) && isset( $profile_data->response[0]->id ) ) {
+		                $profile_data          = $this->sanitize_profile_data( ( array )$profile_data->response[0], 'vkontakte' );
+		                $profile_data['state'] = $vk_login_state;
+		                $response = $this->user_auth( $profile_data, 'vkontakte', $vk_redirect_url );
+		                if ( $response == 'show form' ) {
+		                    return;
+		                }
+		                delete_user_meta( $vk_login_state, 'heateor_sl_redirect_to' );
+		                if ( is_array( $response ) && isset( $response['message'] ) && $response['message'] == 'register' && ( ! isset( $response['url'] ) || $response['url'] == '' ) ) {
+		                    $redirect_to = $this->get_login_redirection_url( $vk_redirect_url, true );
+		                } elseif ( isset( $response['message'] ) && $response['message'] == 'linked' ) {
+		                    $redirect_to = $vk_redirect_url . ( strpos( $vk_redirect_url, '?' ) !== false ? '&' : '?' ) . 'linked=1';
+		                } elseif ( isset( $response['message'] ) && $response['message'] == 'not linked' ) {
+		                    $redirect_to = $vk_redirect_url . ( strpos( $vk_redirect_url, '?' ) !== false ? '&' : '?' ) . 'linked=0';
+		                } elseif ( isset( $response['url'] ) && $response['url'] != '' ) {
+		                    $redirect_to = $response['url'];
+		                } else {
+		                    $redirect_to = $this->get_login_redirection_url( $vk_redirect_url );
+		                }
+		                $this->close_login_popup( $redirect_to );
+		            }
+		        }
+		    }
 		}
 		// twitter authentication
 		if ( isset( $_REQUEST['oauth_token'] ) && isset( $_REQUEST['oauth_verifier'] ) ) {
@@ -2713,26 +2717,26 @@ class Heateor_Social_Login_Public {
 			$option = 'login';
 		}
 		$redirection_url = esc_url( home_url() );
-		if ( isset( $this->options[$option. '_redirection'] ) ) {
-			if ( $this->options[$option. '_redirection'] == 'same' ) {
+		if ( isset( $this->options[$option . '_redirection'] ) ) {
+			if ( $this->options[$option . '_redirection'] == 'same' ) {
 				$http = $this->get_http();
 				if ( $referrer_url != '' ) {
 					$url = $referrer_url;
 				} else {
-					$url = html_entity_decode(esc_url( $http. $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) );
+					$url = html_entity_decode( esc_url( $http . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) );
 				}
 				$redirection_url = $this->get_valid_url( $url );
-			} elseif ( $this->options[$option. '_redirection'] == 'homepage' ) {
+			} elseif ( $this->options[$option . '_redirection'] == 'homepage' ) {
 				$redirection_url = esc_url( home_url() );
-			} elseif ( $this->options[$option. '_redirection'] == 'account' ) {
+			} elseif ( $this->options[$option . '_redirection'] == 'account' ) {
 				$redirection_url = admin_url();
-			} elseif ( $this->options[$option. '_redirection'] == 'custom' && $this->options[$option. '_redirection_url'] != '' ) {
-				$redirection_url = esc_url( $this->options[$option. '_redirection_url'] );
-			} elseif ( $this->options[$option. '_redirection'] == 'bp_profile' && $user_ID != 0 ) {
+			} elseif ( $this->options[$option . '_redirection'] == 'custom' && $this->options[$option . '_redirection_url'] != '' && strpos( $this->options[$option . '_redirection_url'], home_url() ) !== false ) {
+				$redirection_url = esc_url( $this->options[$option . '_redirection_url'] );
+			} elseif ( $this->options[$option . '_redirection'] == 'bp_profile' && $user_ID != 0 ) {
 				$redirection_url = function_exists( 'bp_core_get_user_domain' ) ? bp_core_get_user_domain( $user_ID ) : admin_url();
 			}
 		}
-		$redirection_url = apply_filters( 'heateor_sl_login_redirection_url_filter', $redirection_url, $this->options, $user_ID, $referrer_url, $register);
+		$redirection_url = apply_filters( 'heateor_sl_login_redirection_url_filter', $redirection_url, $this->options, $user_ID, $referrer_url, $register );
 
 		return $redirection_url;
 	
@@ -3534,6 +3538,9 @@ class Heateor_Social_Login_Public {
 		} elseif ( $provider == 'vkontakte' ) {
 		    $temp['id']           = isset( $profile_data['id'] ) ? sanitize_text_field( $profile_data['id'] ) : '';
 		    $temp['email']        = '';
+		    if ( isset( $profile_data['verified'] ) && $profile_data['verified'] == 1 && isset( $profile_data['email'] ) && $profile_data['email'] != '' ) {
+		    	$temp['email']    = sanitize_email( $profile_data['email'] );
+		    }
 		    $temp['name']         = '';
 		    $temp['username']     = isset( $profile_data['screen_name'] ) ? $profile_data['screen_name'] : '';
 		    $temp['first_name']   = isset( $profile_data['first_name'] ) ? $profile_data['first_name'] : '';
@@ -3576,16 +3583,16 @@ class Heateor_Social_Login_Public {
 		    $temp['id']           = isset( $profile_data->id ) ? sanitize_text_field( $profile_data->id ) : '';
 		    $temp['large_avatar'] = '';
 		} elseif ( $provider == 'spotify' ) {
-		    $temp['id']           = isset( $profile_data->id ) ? sanitize_text_field( $profile_data->id ) : '';
-		    $temp['email']        = isset( $profile_data->email ) ? sanitize_email( $profile_data->email ) : '';
-		    $temp['name']         = '';
-		    $temp['username']     = isset( $profile_data->login ) ? sanitize_text_field( $profile_data->login ) : '';
-		    $temp['first_name']   = '';
-		    $temp['last_name']    = '';
-		    $temp['bio']          = isset( $profile_data->bio ) ? sanitize_text_field( $profile_data->bio ) : '';
-		    $temp['link']         = isset( $profile_data->html_url ) && $this->validate_url( $profile_data->html_url ) !== false ? trim( $profile_data->html_url ) : '';
-		    $temp['avatar']       = isset( $profile_data->avatar_url ) && $this->validate_url( $profile_data->avatar_url ) !== false ? trim( $profile_data->avatar_url ) : '';
-		    $temp['large_avatar'] = '';
+		    $temp['email'] 		  = '';
+			$temp['bio'] 		  = '';
+			$temp['username'] 	  = isset( $profile_data->display_name ) ? sanitize_text_field( $profile_data->display_name ) : '';
+			$temp['link'] 		  = isset( $profile_data->external_urls ) && isset( $profile_data->external_urls->spotify ) && $this->validate_url( $profile_data->external_urls->spotify ) !== false ? trim( $profile_data->external_urls->spotify ) : '';
+			$temp['avatar'] 	  =  isset( $profile_data->images ) && is_array( $profile_data->images ) && isset( $profile_data->images[0] ) && is_object( $profile_data->images[0] ) && isset( $profile_data->images[0]->url ) && $this->validate_url( $profile_data->images[0]->url ) !== false ? trim( $profile_data->images[0]->url ) : '';
+			$temp['name'] 		  = '';
+			$temp['first_name']   = '';
+			$temp['last_name']    = '';
+			$temp['id'] 		  = isset( $profile_data->id ) ? sanitize_text_field( $profile_data->id ) : '';
+			$temp['large_avatar'] = '';
 		} elseif ( $provider == 'kakao' ) {
 		    $temp['email'] = '';
 		    if ( isset( $profile_data->kakao_account ) && is_object( $profile_data->kakao_account ) && $profile_data->kakao_account->has_email == '1' && $profile_data->kakao_account->is_email_valid == '1' && $profile_data->kakao_account->is_email_verified == '1' && isset( $profile_data->kakao_account->email ) && $profile_data->kakao_account->email ) {
@@ -3685,7 +3692,7 @@ class Heateor_Social_Login_Public {
 		    $temp['id']           = isset( $profile_data->id ) ? sanitize_text_field( $profile_data->id ) : '';
 		    $temp['large_avatar'] = '';
 		} elseif ( $provider == 'disqus' ) {
-		    $temp['email']        = isset( $profile_data->response->email ) ? sanitize_email( $profile_data->response->email ) : '';
+		    $temp['email']        = '';
 		    $temp['bio']          = '';
 		    $temp['username']     = '';
 		    $temp['link']         = isset( $profile_data->response->profileUrl ) && $this->validate_url( $profile_data->response->profileUrl ) !== false ? trim( $profile_data->response->profileUrl ) : '';

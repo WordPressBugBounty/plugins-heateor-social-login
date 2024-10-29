@@ -4,7 +4,7 @@ Donate link: https://www.heateor.com/donate?action=Heateor+Social+Login+for+Word
 Tags: facebook login, twitter login, x, x login, linkedin login, google login, vkontakte login, steam login, line login, instagram login, microsoft login (windows live login), wordpress login, yahoo login, dribbble login, spotify login, kakao login, github login, twitch login, dropbox login, foursquare login, disqus login, reddit login, discord login, amazon login, stack overflow login, stackoverflow login, mail.ru login, mailru login, mail ru login, odnoklassniki login, yandex login, odnoklassniki, yandex, odnoklassniki login button, yandex login button, youtube login, youtube signin, social plugin, profile data, social analytics, online identity, social profile storage, single sign-on
 Requires at least: 2.5.0
 Tested up to: 6.6.2
-Stable tag: 1.1.35
+Stable tag: 1.1.36
 License: GPLv2 or later
 
 One click login and registration via Facebook, Twitter, Linkedin, Google and 23 others.
@@ -114,6 +114,14 @@ Yes, we can help you with it. Just drop an email at support[ at ]heateor[ dot ]c
 4. **Social Login - WooCommerce checkout page**: Social Login button at WooCommerce checkout page
 
 == Changelog ==
+= 1.1.36 [29 October 2024] =
+* [Security] There is no way to check if user's Disqus and Spotify accounts are verified so plugin will not fetch email along with other profile data if these social networks are used for social login
+* [Security] Plugin now checks if Vkontakte account is verified before saving the email if someone uses Vkontakte login
+* [Security] Social login will not redirect users to a URL outside of the website where this plugin is installed after authentication even if specified in the Custom URL sub-option in the Registration redirection and Login redirection options
+* [Bugfix] Profile data was not being fetched properly via Spotify login
+* [Improvement] Shortcode titles were not registered in the wpml-config.xml file for translation
+* [Improvement] Minor improvements
+
 = 1.1.35 [3 October 2024] =
 * [New] Added a column in the Users table that shows the social network users used for social login
 * [Bugfix] Yandex login was not working
@@ -502,4 +510,12 @@ Yes, we can help you with it. Just drop an email at support[ at ]heateor[ dot ]c
 * [Improvement] Default avatar is being used instead of the Mystery man avatar when Facebook login doesn't provide social avatar
 * [Improvement] Example avatars in the Default avatar option at the Settings > Discussion page in the admin area were appearing as social avatar if admin used social login
 * [Improvement] Plugin now allows Cyrillic, Arabic and Han characters by default, in the name of the person using social login
+* [Improvement] Minor improvements
+
+= 1.1.36 [29 October 2024] =
+* [Security] There is no way to check if user's Disqus and Spotify accounts are verified so plugin will not fetch email along with other profile data if these social networks are used for social login
+* [Security] Plugin now checks if Vkontakte account is verified before saving the email if someone uses Vkontakte login
+* [Security] Social login will not redirect users to a URL outside of the website where this plugin is installed after authentication even if specified in the Custom URL sub-option in the Registration redirection and Login redirection options
+* [Bugfix] Profile data was not being fetched properly via Spotify login
+* [Improvement] Shortcode titles were not registered in the wpml-config.xml file for translation
 * [Improvement] Minor improvements

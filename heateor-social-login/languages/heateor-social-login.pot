@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Heateor Social Login\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-11 19:57+0530\n"
+"POT-Creation-Date: 2024-10-29 12:21+0530\n"
 "PO-Revision-Date: 2021-04-08 13:26+0530\n"
 "Last-Translator: Heateor <hello@heateor.com>\n"
 "Language-Team: Heateor <hello@heateor.com>\n"
@@ -1408,7 +1408,7 @@ msgid ""
 msgstr ""
 
 #: ../admin/partials/heateor-social-login-options-page.php:1839
-#: ../public/class-heateor-social-login-public.php:2616
+#: ../public/class-heateor-social-login-public.php:2628
 msgid "Email required"
 msgstr ""
 
@@ -1780,102 +1780,102 @@ msgstr ""
 msgid "Hide for logged in users:"
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:109
+#: ../public/class-heateor-social-login-public.php:116
 msgid "Email address is not valid"
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:112
+#: ../public/class-heateor-social-login-public.php:119
 msgid "This email is already registered. Please specify a different email"
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:121
-#: ../public/class-heateor-social-login-public.php:3312
+#: ../public/class-heateor-social-login-public.php:128
+#: ../public/class-heateor-social-login-public.php:3329
 msgid "Email"
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:123
-#: ../public/class-heateor-social-login-public.php:3314
+#: ../public/class-heateor-social-login-public.php:130
+#: ../public/class-heateor-social-login-public.php:3331
 msgid "Submit"
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:355
+#: ../public/class-heateor-social-login-public.php:362
 msgid "Enable CURL at your website server to use Mail.ru Social Login."
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:418
+#: ../public/class-heateor-social-login-public.php:425
 msgid ""
 "cURL is not enabled at your website server. Please contact your website "
 "server administrator to enable it. "
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:456
+#: ../public/class-heateor-social-login-public.php:463
 #, php-format
 msgid ""
 "Enter exactly the following url in <strong>Website</strong> option in your "
 "Twitter app ( see step 3 %s )"
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:459
+#: ../public/class-heateor-social-login-public.php:466
 #, php-format
 msgid ""
 "Enter exactly the following url in <strong>Callback URLs</strong> option in "
 "your Twitter app ( see step 3 %s )"
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:462
+#: ../public/class-heateor-social-login-public.php:469
 msgid ""
 "Make sure cURL is enabled at your website server. You may need to contact "
 "the server administrator of your website to verify this"
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:2367
+#: ../public/class-heateor-social-login-public.php:2379
 msgid "Social Account Linking"
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:2447
+#: ../public/class-heateor-social-login-public.php:2459
 msgid "Account linked successfully"
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:2451
+#: ../public/class-heateor-social-login-public.php:2463
 msgid "Account already exists or linked"
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:2528
-#: ../public/class-heateor-social-login-public.php:2534
+#: ../public/class-heateor-social-login-public.php:2540
+#: ../public/class-heateor-social-login-public.php:2546
 msgid "Currently"
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:2528
-#: ../public/class-heateor-social-login-public.php:2534
+#: ../public/class-heateor-social-login-public.php:2540
+#: ../public/class-heateor-social-login-public.php:2546
 msgid "Connected with"
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:2528
-#: ../public/class-heateor-social-login-public.php:2534
+#: ../public/class-heateor-social-login-public.php:2540
+#: ../public/class-heateor-social-login-public.php:2546
 msgid "Remove"
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:2594
+#: ../public/class-heateor-social-login-public.php:2606
 msgid "Please verify your email address to login. "
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:2594
+#: ../public/class-heateor-social-login-public.php:2606
 msgid "Your email has been verified. Now you can login to your account"
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:2598
+#: ../public/class-heateor-social-login-public.php:2610
 msgid "Notification"
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:2619
+#: ../public/class-heateor-social-login-public.php:2631
 msgid "Please check your email inbox to complete the registration. "
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:3153
+#: ../public/class-heateor-social-login-public.php:3170
 msgid ""
 "<strong>ERROR</strong>: Your account has been denied access to this site."
 msgstr ""
 
-#: ../public/class-heateor-social-login-public.php:3157
+#: ../public/class-heateor-social-login-public.php:3174
 msgid "<strong>ERROR</strong>: Your account is still pending approval."
 msgstr ""

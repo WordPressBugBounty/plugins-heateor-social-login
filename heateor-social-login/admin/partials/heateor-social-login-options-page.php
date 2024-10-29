@@ -906,7 +906,7 @@
 						<tbody id="heateor_sl_disqus_options" <?php echo isset( $this->options['providers'] ) && in_array( 'disqus', $this->options['providers'] ) ? '' : 'style="display:none"'; ?>>
 							<tr>
 								<th>
-								<label for="heateor_sl_disqus_key"><?php _e( "Disqus Public Key", 'heateor-social-login' ); ?></label>
+								<label for="heateor_sl_disqus_key"><?php _e( "Disqus API Key", 'heateor-social-login' ); ?></label>
 								<img id="heateor_sl_disqus_key_help" class="heateor_sl_help_bubble" src="<?php echo plugins_url( '../../images/info.png', __FILE__ ) ?>" />
 								</th>
 								<td>
@@ -916,7 +916,7 @@
 							<tr class="heateor_sl_help_content" id="heateor_sl_disqus_key_help_cont">
 								<td colspan="2">
 								<div>
-								<?php echo sprintf( __( 'Required for Disqus Social Login to work. Please follow the documentation at <a href="%s" target="_blank">this link</a> to get Disqus Public Key', 'heateor-social-login' ), 'https://support.heateor.com/get-disqus-public-key-and-secret-key' ) ?>
+								<?php echo sprintf( __( 'Required for Disqus Social Login to work. Please follow the documentation at <a href="%s" target="_blank">this link</a> to get Disqus API Key', 'heateor-social-login' ), 'https://support.heateor.com/get-disqus-public-key-and-secret-key' ) ?>
 								<br/>
 								<span style="color:#14ACDF"><?php _e( 'Paste following url in the <strong>Callback URL</strong> option mentioned at the link', 'heateor-social-login' ); ?></span>
 								<br/>
