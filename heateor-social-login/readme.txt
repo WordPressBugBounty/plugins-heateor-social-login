@@ -3,7 +3,7 @@ Contributors: Heateor, the_champ
 Donate link: https://www.heateor.com/donate?action=Heateor+Social+Login+for+WordPress
 Tags: facebook login, twitter login, x, x login, linkedin login, google login, vkontakte login, steam login, line login, instagram login, microsoft login (windows live login), wordpress login, yahoo login, dribbble login, spotify login, kakao login, github login, twitch login, dropbox login, foursquare login, disqus login, reddit login, discord login, amazon login, stack overflow login, stackoverflow login, mail.ru login, mailru login, mail ru login, odnoklassniki login, yandex login, odnoklassniki, yandex, odnoklassniki login button, yandex login button, youtube login, youtube signin, social plugin, profile data, social analytics, online identity, social profile storage, single sign-on
 Requires at least: 2.5.0
-Tested up to: 6.6.2
+Tested up to: 6.7
 Stable tag: 1.1.36
 License: GPLv2 or later
 
