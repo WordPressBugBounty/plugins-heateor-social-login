@@ -186,7 +186,7 @@ class Heateor_Social_Login_Public {
 				if ( isset( $this->options['providers'] ) && in_array( 'spotify', $this->options['providers'] ) && isset( $this->options['spotify_channel_id'] ) && $this->options['spotify_channel_id'] != '' && isset( $this->options['spotify_channel_secret'] ) && $this->options['spotify_channel_secret'] != '' ) {
 					if ( ! isset( $_GET['code'] ) ) {
 						$spotify_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $spotify_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 					wp_redirect( "https://accounts.spotify.com/authorize?client_id=" . $this->options['spotify_channel_id'] . "&scope=user-read-private%20user-read-email&response_type=code&state=" . $spotify_login_state . "&redirect_uri=" . $site_url_for_callback . "/HeateorSlAuth/Spotify" );
@@ -197,7 +197,7 @@ class Heateor_Social_Login_Public {
 				if ( isset( $this->options['providers'] ) && in_array( 'wordpress', $this->options['providers'] ) && isset( $this->options['wordpress_channel_id'] ) && $this->options['wordpress_channel_id'] != '' && isset( $this->options['wordpress_channel_secret'] ) && $this->options['wordpress_channel_secret'] != '' ) {
 					if ( ! isset( $_GET['code'] ) ) {
 						$wordpress_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $wordpress_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 					wp_redirect( "https://public-api.wordpress.com/oauth2/authorize?client_id=" . $this->options['wordpress_channel_id'] . "&scope=auth&state=" . $wordpress_login_state . "&response_type=code&redirect_uri=" . $site_url_for_callback . "/HeateorSlAuth/Wordpress" );
@@ -208,7 +208,7 @@ class Heateor_Social_Login_Public {
 				if ( isset( $this->options['providers'] ) && in_array( 'kakao', $this->options['providers'] ) && isset( $this->options['kakao_channel_id'] ) && $this->options['kakao_channel_id'] != '' && isset( $this->options['kakao_channel_secret'] ) && $this->options['kakao_channel_secret'] != '' ) {
 					if ( ! isset( $_GET['code'] ) ) {
 						$kakao_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $kakao_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 					wp_redirect( "https://kauth.kakao.com/oauth/authorize?client_id=" . $this->options['kakao_channel_id'] . "&state=" . $kakao_login_state . "&response_type=code&redirect_uri=" . $site_url_for_callback . "/HeateorSlAuth/Kakao" );
@@ -219,7 +219,7 @@ class Heateor_Social_Login_Public {
 				if ( isset( $this->options['providers'] ) && in_array( 'yahoo', $this->options['providers'] ) && isset( $this->options['yahoo_channel_id'] ) && $this->options['yahoo_channel_id'] != '' && isset( $this->options['yahoo_channel_secret'] ) && $this->options['yahoo_channel_secret'] != '' ) {
 					if ( ! isset( $_GET['code'] ) ) {
 						$yahoo_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $yahoo_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 					wp_redirect( "https://api.login.yahoo.com/oauth2/request_auth?client_id=" . $this->options['yahoo_channel_id'] . "&response_type=code&state=" . $yahoo_login_state . "&language=en-us&redirect_uri=" . $site_url_for_callback . "/HeateorSlAuth/Yahoo" );
@@ -230,7 +230,7 @@ class Heateor_Social_Login_Public {
 				if ( isset( $this->options['providers'] ) && in_array( 'discord', $this->options['providers'] ) && $this->options['discord_client_id'] && $this->options['discord_client_secret'] ) {
 					if ( ! isset( $_GET['code'] ) ) {
 						$discord_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $discord_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 					wp_redirect( "https://discord.com/oauth2/authorize/request_auth?client_id=" . $this->options['discord_client_id'] . "&response_type=code&state=" . $discord_login_state . "&scope=identify%20email&redirect_uri=" . $site_url_for_callback . "/HeateorSlAuth/Discord" );
@@ -241,7 +241,7 @@ class Heateor_Social_Login_Public {
 				if ( isset( $this->options['providers'] ) && in_array( 'amazon', $this->options['providers'] ) && $this->options['amazon_client_id'] && $this->options['amazon_client_secret'] ) {
 					if ( ! isset( $_GET['code'] ) ) {
 						$amazon_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $amazon_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 					wp_redirect( "https://www.amazon.com/ap/oa?client_id=" . $this->options['amazon_client_id'] . "&response_type=code&state=" . $amazon_login_state . "&scope=profile&redirect_uri=" . urlencode( $site_url_for_callback . "/HeateorSlAuth/Amazon" ) );
@@ -252,7 +252,7 @@ class Heateor_Social_Login_Public {
 				if ( isset( $this->options['providers'] ) && in_array( 'stackoverflow', $this->options['providers'] ) && $this->options['stackoverflow_client_id'] && $this->options['stackoverflow_client_secret'] ) {
 					if ( ! isset( $_GET['code'] ) ) {
 						$stackoverflow_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $stackoverflow_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 			        wp_redirect( "https://stackexchange.com/oauth?client_id=" . $this->options['stackoverflow_client_id'] . "&response_type=code&state=" . $stackoverflow_login_state . "&redirect_uri=" . $site_url_for_callback . "/HeateorSlAuth/Stackoverflow" );
@@ -263,7 +263,7 @@ class Heateor_Social_Login_Public {
 				if ( isset( $this->options['providers'] ) && in_array( 'dribbble', $this->options['providers'] ) && isset( $this->options['dribbble_channel_id'] ) && $this->options['dribbble_channel_id'] != '' && isset( $this->options['dribbble_channel_secret'] ) && $this->options['dribbble_channel_secret'] != '' ) {
 					if ( ! isset( $_GET['code'] ) ) {
 						$dribbble_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $dribbble_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 					wp_redirect( "https://dribbble.com/oauth/authorize?client_id=" . $this->options['dribbble_channel_id'] . "&scope=public&state=" . $dribbble_login_state . "&redirect_uri=" . urlencode( $site_url_for_callback . "/HeateorSlAuth/Dribbble" ) );
@@ -274,7 +274,7 @@ class Heateor_Social_Login_Public {
 				if ( isset( $this->options['providers'] ) && in_array( 'dribbble', $this->options['providers'] ) && isset( $this->options['dribbble_channel_id'] ) && $this->options['dribbble_channel_id'] != '' && isset( $this->options['dribbble_channel_secret'] ) && $this->options['dribbble_channel_secret'] != '' ) {
 					if ( ! isset( $_GET['code'] ) ) {
 						$dribbble_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $dribbble_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 					wp_redirect( "https://dribbble.com/oauth/authorize?client_id=" . $this->options['dribbble_channel_id'] . "&scope=public&state=" . $dribbble_login_state . "&redirect_uri=" . urlencode( $site_url_for_callback . "/HeateorSlAuth/Dribbble" ) );
@@ -285,10 +285,10 @@ class Heateor_Social_Login_Public {
 				if ( isset( $this->options['providers'] ) && in_array( 'odnoklassniki', $this->options['providers'] ) && $this->options['odnoklassniki_client_id'] && $this->options['odnoklassniki_client_secret'] ) {
 					if ( ! isset( $_GET['code'] ) ) {
 						$odnoklassniki_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $odnoklassniki_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
-					wp_redirect( "https://connect.ok.ru/oauth/authorize?client_id=" . $this->options['odnoklassniki_client_id'] . "&scope=public&state=" . $odnoklassniki_login_state . "&scope=GET_EMAIL%20PHOTO_CONTENT&response_type=code&redirect_uri=" . urlencode( $site_url_for_callback . "/HeateorSlAuth/Odnoklassniki" ) );
+					wp_redirect( "https://connect.ok.ru/oauth/authorize?client_id=" . $this->options['odnoklassniki_client_id'] . "&state=" . $odnoklassniki_login_state . "&scope=GET_EMAIL,PHOTO_CONTENT&response_type=code&redirect_uri=" . urlencode( $site_url_for_callback . "/HeateorSlAuth/Odnoklassniki" ) );
 					die;
 				}
 				// Yandex
@@ -296,7 +296,7 @@ class Heateor_Social_Login_Public {
 				if ( isset( $this->options['providers'] ) && in_array( 'yandex', $this->options['providers'] ) && $this->options['yandex_client_id'] && $this->options['yandex_client_secret'] ) {
 					if ( ! isset( $_GET['code'] ) ) {
 						$yandex_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $yandex_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 					wp_redirect( "https://oauth.yandex.ru/authorize?client_id=" . $this->options['yandex_client_id'] . "&response_type=code&state=" . $yandex_login_state . "&redirect_uri=" . urlencode( $site_url_for_callback . "/HeateorSlAuth/Yandex" ) );
@@ -307,7 +307,7 @@ class Heateor_Social_Login_Public {
 				if ( isset( $this->options['providers'] ) && in_array( 'instagram', $this->options['providers'] ) && isset( $this->options['instagram_channel_id'] ) && $this->options['instagram_channel_id'] != '' && isset( $this->options['instagram_channel_secret'] ) && $this->options['instagram_channel_secret'] != '' ) {
 					if ( ! isset( $_GET['code'] ) ) {
 						$instagram_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $instagram_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 					wp_redirect( "https://api.instagram.com/oauth/authorize?client_id=" . $this->options['instagram_channel_id'] . "&scope=user_profile,user_media&response_type=code&state=" . $instagram_login_state . "&language=en-us&redirect_uri=" . urlencode( $site_url_for_callback . "/HeateorSlAuth/Instagram" ) );
@@ -318,7 +318,7 @@ class Heateor_Social_Login_Public {
 				if ( isset( $this->options['providers'] ) && in_array( 'github', $this->options['providers'] ) && isset( $this->options['github_channel_id'] ) && $this->options['github_channel_id'] != '' && isset( $this->options['github_channel_secret'] ) && $this->options['github_channel_secret'] != '' ) {
 					if ( ! isset( $_GET['code'] ) ) {
 						$github_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $github_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 					wp_redirect( "https://github.com/login/oauth/authorize?client_id=" . $this->options['github_channel_id'] . "&scope=read:user&state=" . $github_login_state . "&response_type=code&redirect_uri=" . $site_url_for_callback . "/HeateorSlAuth/Github" );
@@ -329,7 +329,7 @@ class Heateor_Social_Login_Public {
 				if ( isset( $this->options['providers'] ) && in_array( 'line', $this->options['providers'] ) && isset( $this->options['line_channel_id'] ) && $this->options['line_channel_id'] != '' && isset( $this->options['line_channel_secret'] ) && $this->options['line_channel_secret'] != '' ) {
 					if ( ! isset( $_GET['code'] ) ) {
 						$line_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $line_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url_raw( $_GET['heateor_sl_redirect_to'] ) : home_url() );
 					}
 					wp_redirect( "https://access.line.me/oauth2/v2.1/authorize?client_id=" . $this->options['line_channel_id'] . "&response_type=code&scope=profile%20openid%20email&state=" . $line_login_state . "&redirect_uri=" . urlencode( $site_url_for_callback . "/HeateorSlAuth/Line" ) );
@@ -339,9 +339,9 @@ class Heateor_Social_Login_Public {
 			} elseif ( sanitize_text_field( $_GET['HeateorSlAuth'] ) == 'Facebook' ) {
 				if ( ! isset( $_GET['code'] ) ) {
 					$facebook_login_state = mt_rand();
-					// save referrer url in state
+					// save referrer URL in state
 					update_user_meta( $facebook_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
-			        wp_redirect( "https://www.facebook.com/v18.0/dialog/oauth?scope=email&client_id=" . $this->options['fb_key'] . "&state=" . $facebook_login_state . "&redirect_uri=" . $site_url_for_callback . "/?HeateorSlAuth=Facebook" );
+			        wp_redirect( "https://www.facebook.com/v19.0/dialog/oauth?scope=email&client_id=" . $this->options['fb_key'] . "&state=" . $facebook_login_state . "&redirect_uri=" . $site_url_for_callback . "/?HeateorSlAuth=Facebook" );
 			        die;
 		    	}
 		    	// Twitch
@@ -349,7 +349,7 @@ class Heateor_Social_Login_Public {
 			    if ( isset( $this->options['providers'] ) && in_array( 'twitch', $this->options['providers'] ) && isset( $this->options['twitch_client_id'] ) && $this->options['twitch_client_id'] != '' && isset( $this->options['twitch_client_secret'] ) && $this->options['twitch_client_secret'] != '' ) {
 			    	if ( ! isset( $_GET['code'] ) ) {
 						$twitch_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $twitch_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 			        wp_redirect( "https://id.twitch.tv/oauth2/authorize?client_id=" . $this->options['twitch_client_id'] . "&scope=user:read:email&response_type=code&state=" . $twitch_login_state . "&redirect_uri=" . $site_url_for_callback . "/HeateorSlAuth/Twitch" );
@@ -364,10 +364,10 @@ class Heateor_Social_Login_Public {
 			    	}
 			    	if ( ! isset( $_GET['code'] ) ) {
 						$mailru_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $mailru_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
-			        // save referrer url in state
+			        // save referrer URL in state
 			        $_SESSION['heateor_sl_mailru_redirect'] = isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url();
 			        wp_redirect( "https://oauth.mail.ru/login?client_id=" . $this->options['mailru_client_id'] . "&scope=userinfo&state=" . $mailru_login_state . "&response_type=code&redirect_uri=" . $site_url_for_callback . "/HeateorSlAuth/Mailru" );
 			        die;
@@ -377,7 +377,7 @@ class Heateor_Social_Login_Public {
 			    if ( isset( $this->options['providers'] ) && in_array( 'reddit', $this->options['providers'] ) && isset( $this->options['reddit_client_id'] ) && $this->options['reddit_client_id'] != '' && isset( $this->options['reddit_client_secret'] ) && $this->options['reddit_client_secret'] != '' ) {
 			    	if ( ! isset( $_GET['code'] ) ) {
 						$reddit_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $reddit_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 			        wp_redirect( "https://ssl.reddit.com/api/v1/authorize?client_id=" . $this->options['reddit_client_id'] . "&scope=identity&state=" . $reddit_login_state . "&duration=temporary&response_type=code&redirect_uri=" . $site_url_for_callback . "/HeateorSlAuth/Reddit" );
@@ -388,7 +388,7 @@ class Heateor_Social_Login_Public {
 			    if ( isset( $this->options['providers'] ) && in_array( 'disqus', $this->options['providers'] ) && isset( $this->options['disqus_public_key'] ) && $this->options['disqus_public_key'] != '' && isset( $this->options['disqus_secret_key'] ) && $this->options['disqus_secret_key'] != '' ) {
 			    	if ( ! isset( $_GET['code'] ) ) {
 						$disqus_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $disqus_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 			        wp_redirect( "https://disqus.com/api/oauth/2.0/authorize/?client_id=" . $this->options['disqus_public_key'] . "&scope=read,email&response_type=code&state=" . $disqus_login_state . "&redirect_uri=" . $site_url_for_callback . "/HeateorSlAuth/Disqus" );
@@ -399,7 +399,7 @@ class Heateor_Social_Login_Public {
 			    if ( isset( $this->options['providers'] ) && in_array( 'foursquare', $this->options['providers'] ) && isset( $this->options['foursquare_client_id'] ) && $this->options['foursquare_client_id'] != '' && isset( $this->options['foursquare_client_secret'] ) && $this->options['foursquare_client_secret'] != '' ) {
 			    	if ( ! isset( $_GET['code'] ) ) {
 						$foursquare_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $foursquare_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 			        wp_redirect( "https://foursquare.com/oauth2/authenticate/?client_id=" . $this->options['foursquare_client_id'] . "&response_type=code&state=" . $foursquare_login_state . "&redirect_uri=" . $site_url_for_callback . "/HeateorSlAuth/Foursquare" );
@@ -410,7 +410,7 @@ class Heateor_Social_Login_Public {
 				if ( isset( $this->options['providers'] ) && in_array( 'dropbox', $this->options['providers'] ) && isset( $this->options['dropbox_app_key'] ) && $this->options['dropbox_app_key'] != '' && isset( $this->options['dropbox_app_secret'] ) && $this->options['dropbox_app_secret'] != '' ) {
 			    	if ( ! isset( $_GET['code'] ) ) {
 						$dropbox_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $dropbox_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 			        wp_redirect( "https://www.dropbox.com/1/oauth2/authorize?client_id=" . $this->options['dropbox_app_key'] . "&scope=account_info.read&state=" . $dropbox_login_state . "&response_type=code&redirect_uri=" . $site_url_for_callback . "/HeateorSlAuth/Dropbox" );
@@ -596,7 +596,7 @@ class Heateor_Social_Login_Public {
 			} elseif ( sanitize_text_field( $_GET['HeateorSlAuth'] ) == 'Google' ) {
 			    if ( isset( $this->options['providers'] ) && in_array( 'google', $this->options['providers'] ) && isset( $this->options['google_key'] ) && $this->options['google_key'] != '' && isset( $this->options['google_secret'] ) && $this->options['google_secret'] != '' ) {
 					$google_login_state = mt_rand();
-					// save referrer url in state
+					// save referrer URL in state
 					update_user_meta( $google_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					update_user_meta( $google_login_state, 'heateor_sl_temp_network', 'Google' );
 			        wp_redirect( "https://accounts.google.com/o/oauth2/auth?client_id=" . $this->options['google_key'] . "&prompt=select_account&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&state=" . $google_login_state . "&response_type=code&redirect_uri=" . $site_url_for_callback );
@@ -606,7 +606,7 @@ class Heateor_Social_Login_Public {
 			} elseif ( sanitize_text_field( $_GET['HeateorSlAuth'] ) == 'Youtube' ) {
 			    if ( isset( $this->options['providers'] ) && in_array( 'youtube', $this->options['providers'] ) && isset( $this->options['youtube_key'] ) && $this->options['youtube_key'] != '' && isset( $this->options['google_key'] ) && $this->options['google_key'] != '' && isset( $this->options['google_secret'] ) && $this->options['google_secret'] != '' ) {
 			        $youtubeLoginState = mt_rand();
-		            // save referrer url in state
+		            // save referrer URL in state
 		            update_user_meta( $youtubeLoginState, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url_raw( $_GET['heateor_sl_redirect_to'] ) : home_url() );
 		            update_user_meta( $youtubeLoginState, 'heateor_sl_temp_network', 'Youtube' );
 		            wp_redirect( "https://accounts.google.com/o/oauth2/auth?client_id=" . $this->options['google_key'] . "&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/youtube.readonly&state=" . $youtubeLoginState ."&response_type=code&prompt=select_account&redirect_uri=" . $site_url_for_callback );
@@ -617,7 +617,7 @@ class Heateor_Social_Login_Public {
 			    if ( isset( $this->options['providers'] ) && in_array( 'microsoft', $this->options['providers'] ) && isset( $this->options['live_channel_id'] ) && $this->options['live_channel_id'] != '' && isset( $this->options['live_channel_secret'] ) && $this->options['live_channel_secret'] != '' ) {
 			    	if ( ! isset( $_GET['code'] ) ) {
 						$live_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $live_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 			        wp_redirect( "https://login.live.com/oauth20_authorize.srf?client_id=" . $this->options['live_channel_id'] . "&scope=wl.emails,wl.basic&response_type=code&state=" . $live_login_state . "&redirect_uri=" . $site_url_for_callback . "/HeateorSlAuth/Live" );
@@ -628,7 +628,7 @@ class Heateor_Social_Login_Public {
 				if ( isset( $this->options['providers'] ) && in_array( 'vkontakte', $this->options['providers'] ) && isset( $this->options['vk_key'] ) && $this->options['vk_key'] != '' && isset( $this->options['vk_secure_key'] ) && $this->options['vk_secure_key'] != '' ) {
 			    	if ( ! isset( $_GET['code'] ) ) {
 						$vk_login_state = mt_rand();
-						// save referrer url in state
+						// save referrer URL in state
 						update_user_meta( $vk_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
 					wp_redirect( "https://oauth.vk.com/authorize?client_id=" . $this->options['vk_key'] . "&display=page&scope=email&response_type=code&v=5.131&state=" . $vk_login_state . "&redirect_uri=" . $site_url_for_callback );
@@ -683,10 +683,10 @@ class Heateor_Social_Login_Public {
 		}
 
 		// spotify
-		if ( isset( $_GET['code'] ) && remove_query_arg( array(
+		if ( isset( $_GET['code'] ) && in_array( remove_query_arg( array(
 			'code',
 			'state'
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Spotify' ) {
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ), array( home_url() . '/HeateorSlAuth/Spotify', home_url() . '/heateorslauth/spotify' ) ) ) {
 			$spotify_login_state  = esc_attr( trim( $_GET['state'] ) );
 			if ( ( $spotify_redirect_url = get_user_meta( $spotify_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
 		    	return;
@@ -749,10 +749,10 @@ class Heateor_Social_Login_Public {
 		}
 
 		// Wordpress
-		if ( isset( $_GET['code'] ) && remove_query_arg( array(
+		if ( isset( $_GET['code'] ) && in_array( remove_query_arg( array(
 			'code',
-			'state' 
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Wordpress' ) {
+			'state'
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ), array( home_url() . '/HeateorSlAuth/Wordpress', home_url() . '/heateorslauth/wordpress' ) ) ) {
 			$wordpress_login_state  = esc_attr( trim( $_GET['state'] ) );
 			if ( ( $wordpress_redirect_url = get_user_meta( $wordpress_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
 		    	return;
@@ -813,10 +813,10 @@ class Heateor_Social_Login_Public {
 		}
 
 		// kakao
-		if ( isset( $_GET['code'] ) && remove_query_arg( array(
+		if ( isset( $_GET['code'] ) && in_array( remove_query_arg( array(
 			'code',
-			'state' 
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Kakao' ) {
+			'state'
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ), array( home_url() . '/HeateorSlAuth/Kakao', home_url() . '/heateorslauth/kakao' ) ) ) {
 			$kakao_login_state  = esc_attr( trim( $_GET['state'] ) );
 			if ( ( $kakao_redirect_url = get_user_meta( $kakao_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
 		    	return;
@@ -879,10 +879,10 @@ class Heateor_Social_Login_Public {
 		}
 
 		// yahoo
-		if ( isset( $_GET['code'] ) && remove_query_arg( array(
+		if ( isset( $_GET['code'] ) && in_array( remove_query_arg( array(
 			'code',
 			'state'
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Yahoo' ) {
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ), array( home_url() . '/HeateorSlAuth/Yahoo', home_url() . '/heateorslauth/yahoo' ) ) ) {
 			$yahoo_login_state  = esc_attr( trim( $_GET['state'] ) );
 			if ( ( $yahoo_redirect_url = get_user_meta( $yahoo_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
 		    	return;
@@ -943,11 +943,11 @@ class Heateor_Social_Login_Public {
 		}
 
 		// discord
-		if ( isset( $_GET['code'] ) && remove_query_arg( array( 
+		if ( isset( $_GET['code'] ) && in_array( remove_query_arg( array(
 			'code',
-			'scope',
-			'state'
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Discord' ) {
+			'state',
+			'scope'
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ), array( home_url() . '/HeateorSlAuth/Discord', home_url() . '/heateorslauth/discord' ) ) ) {
 			$discord_login_state  = esc_attr( trim( $_GET['state'] ) );
 			if ( ( $discord_redirect_url = get_user_meta( $discord_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
 		    	return;
@@ -1011,11 +1011,11 @@ class Heateor_Social_Login_Public {
 		}
 
 		// amazon
-		if ( isset( $_GET['code'] ) && remove_query_arg( array(
-			 'code',
-			'scope',
-			'state' 
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Amazon' ) {
+		if ( isset( $_GET['code'] ) && in_array( remove_query_arg( array(
+			'code',
+			'state',
+			'scope'
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ), array( home_url() . '/HeateorSlAuth/Amazon', home_url() . '/heateorslauth/amazon' ) ) ) {
 			$amazon_login_state  = esc_attr( trim( $_GET['state'] ) );
 			if ( ( $amazon_redirect_url = get_user_meta( $amazon_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
 		    	return;
@@ -1078,11 +1078,11 @@ class Heateor_Social_Login_Public {
 		}
 
 		// Stackoverflow
-		if ( isset( $_GET['code'] ) && remove_query_arg( array(
-		    'code',
-		    'scope',
-		    'state'
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Stackoverflow' ) {
+		if ( isset( $_GET['code'] ) && in_array( remove_query_arg( array(
+			'code',
+			'state',
+			'scope'
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ), array( home_url() . '/HeateorSlAuth/Stackoverflow', home_url() . '/heateorslauth/stackoverflow' ) ) ) {
 			$stackoverflow_login_state  = esc_attr( trim( $_GET['state'] ) );
 			if ( ( $stackoverflow_redirect_url = get_user_meta( $stackoverflow_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
 		    	return;
@@ -1143,11 +1143,11 @@ class Heateor_Social_Login_Public {
 		}
 
 		// Dribbble
-		if ( isset( $_GET['code'] ) && remove_query_arg( array(
+		if ( isset( $_GET['code'] ) && in_array( remove_query_arg( array(
 			'code',
-			'scope',
-			'state'
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Dribbble' ) {
+			'state',
+			'scope'
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ), array( home_url() . '/HeateorSlAuth/Dribbble', home_url() . '/heateorslauth/dribbble' ) ) ) {
 			$dribbble_login_state  = esc_attr( trim( $_GET['state'] ) );
 			if ( ( $dribbble_redirect_url = get_user_meta( $dribbble_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
 		    	return;
@@ -1208,11 +1208,17 @@ class Heateor_Social_Login_Public {
 		}
 
 		// odnoklassniki
-		if ( isset( $_GET['code'] ) && remove_query_arg( array(
+		if ( isset( $_GET['code'] ) && ( remove_query_arg( array(
 			'code',
 			'scope',
-			'state'
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Odnoklassniki' ) {
+			'state',
+			'permissions_granted'
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Odnoklassniki' || remove_query_arg( array(
+			'code',
+			'scope',
+			'state',
+			'permissions_granted'
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/heateorslauth/odnoklassniki' ) ) {
 			$odnoklassniki_login_state  = esc_attr( trim( $_GET['state'] ) );
 			if ( ( $odnoklassniki_redirect_url = get_user_meta( $odnoklassniki_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
 		    	return;
@@ -1237,9 +1243,11 @@ class Heateor_Social_Login_Public {
 			) );
 
 			if ( ! is_wp_error( $response ) && isset( $response['response']['code'] ) && 200 === $response['response']['code'] ) {
-				$body          = json_decode( wp_remote_retrieve_body( $response ) );
-				$authorization = "Bearer " . $body->access_token;
-				$response      = wp_remote_get( "https://api.ok.ru/fb.do?application_key="  . $this->options['odnoklassniki_public_key'] . "&format=json&method=users.getCurrentUser&sig=" . mt_rand() . "&access_token=" . $body->access_token, array(
+				$body          		= json_decode( wp_remote_retrieve_body( $response ) );
+				$authorization 		= "Bearer " . $body->access_token;
+				$session_secret_key = strtolower( md5( $body->access_token . $this->options['odnoklassniki_client_secret'] ) );
+				$sig 				= strtolower( md5( 'application_key=' . $this->options['odnoklassniki_public_key'] . 'format=jsonmethod=users.getCurrentUser' . $session_secret_key ) );
+				$response      		= wp_remote_get( "https://api.ok.ru/fb.do?application_key="  . $this->options['odnoklassniki_public_key'] . "&format=json&method=users.getCurrentUser&sig=" . $sig . "&access_token=" . $body->access_token, array(
 					'timeout' => 15,
 					'headers' => array(
 						'Accept' => 'application/json',
@@ -1249,7 +1257,6 @@ class Heateor_Social_Login_Public {
 				
 				if ( ! is_wp_error( $response ) && isset( $response['response']['code'] ) && 200 === $response['response']['code'] ) {
 					$profile_data = json_decode( wp_remote_retrieve_body( $response ) );
-					
 					if ( is_object( $profile_data ) && isset( $profile_data->uid ) ) {
 						$profile_data      	   = $this->sanitize_profile_data( $profile_data, 'odnoklassniki' );
 						$profile_data['state'] = $odnoklassniki_login_state;
@@ -1276,11 +1283,11 @@ class Heateor_Social_Login_Public {
 		}
 
 		// yandex
-		if ( isset( $_GET['code'] ) && remove_query_arg( array(
+		if ( isset( $_GET['code'] ) && in_array( remove_query_arg( array(
 			'code',
 			'state',
 			'cid'
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Yandex' ) {
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ), array( home_url() . '/HeateorSlAuth/Yandex', home_url() . '/heateorslauth/yandex' ) ) ) {
 			$yandex_login_state  = esc_attr( trim( $_GET['state'] ) );
 			if ( ( $yandex_redirect_url = get_user_meta( $yandex_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
 		    	return;
@@ -1344,10 +1351,10 @@ class Heateor_Social_Login_Public {
 		}
 
 		// Instagram
-		if ( isset( $_GET['code'] ) && remove_query_arg( array(
+		if ( isset( $_GET['code'] ) && in_array( remove_query_arg( array(
 			'code',
 			'state'
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Instagram' ) {
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ), array( home_url() . '/HeateorSlAuth/Instagram', home_url() . '/heateorslauth/instagram' ) ) ) {
 			$instagram_login_state  = esc_attr( trim( $_GET['state'] ) );
 			if ( ( $instagram_redirect_url = get_user_meta( $instagram_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
 		    	return;
@@ -1406,10 +1413,10 @@ class Heateor_Social_Login_Public {
 		}
 
 		// Github
-		if ( isset( $_GET['code'] ) && remove_query_arg( array(
+		if ( isset( $_GET['code'] ) && in_array( remove_query_arg( array(
 			'code',
-			'state' 
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Github' ) {
+			'state'
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ), array( home_url() . '/HeateorSlAuth/Github', home_url() . '/heateorslauth/github' ) ) ) {
 			$github_login_state  = esc_attr( trim( $_GET['state'] ) );
 			if ( ( $github_redirect_url = get_user_meta( $github_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
 		    	return;
@@ -1495,7 +1502,7 @@ class Heateor_Social_Login_Public {
 		}
 
 		// Line login
-		if ( isset( $_GET['code'] ) && isset( $_GET['state'] ) && remove_query_arg( array( 'code', 'scope', 'state' ), strtok( $this->get_http() . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], '?' ) ) == home_url() . '/HeateorSlAuth/Line' ) {
+		if ( isset( $_GET['code'] ) && isset( $_GET['state'] ) && ( remove_query_arg( array( 'code', 'scope', 'state' ), strtok( $this->get_http() . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], '?' ) ) == home_url() . '/HeateorSlAuth/Line' || remove_query_arg( array( 'code', 'scope', 'state' ), strtok( $this->get_http() . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], '?' ) ) == home_url() . '/heateorslauth/line' ) ) {
 			$this->php_session_start_resume();
 			$post_data = array(
 				'grant_type' => 'authorization_code',
@@ -1573,7 +1580,7 @@ class Heateor_Social_Login_Public {
 				        'client_id' => $this->options['fb_key'],
 				        'client_secret' => $this->options['fb_secret'] 
 				    );
-				    $response = wp_remote_post( "https://graph.facebook.com/v18.0/oauth/access_token", array(
+				    $response = wp_remote_post( "https://graph.facebook.com/v19.0/oauth/access_token", array(
 				        'method' => 'POST',
 				        'timeout' => 15,
 				        'redirection' => 5,
@@ -1630,11 +1637,11 @@ class Heateor_Social_Login_Public {
 		}
 
 		// Twitch
-		if ( isset( $_GET['code'] ) && remove_query_arg( array(
-		    'code',
-		    'scope',
-		    'state'
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Twitch' ) { 
+		if ( isset( $_GET['code'] ) && in_array( remove_query_arg( array(
+			'code',
+			'state',
+			'scope'
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ), array( home_url() . '/HeateorSlAuth/Twitch', home_url() . '/heateorslauth/twitch' ) ) ) { 
 		    $twitch_login_state  = esc_attr( trim( $_GET['state'] ) );
 			if ( ( $twitch_redirect_url = get_user_meta( $twitch_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
 		    	return;
@@ -1657,13 +1664,14 @@ class Heateor_Social_Login_Public {
 		        ),
 		        'body' => http_build_query( $post_data ) 
 		    ) );
-		    
+
 		    if ( ! is_wp_error( $response ) && isset( $response['response']['code'] ) && 200 === $response['response']['code'] ) {
 		        $body     = json_decode( wp_remote_retrieve_body( $response ) );
 		        $response = wp_remote_get( "https://api.twitch.tv/helix/users", array(
 		             'timeout' => 15,
 		             'headers' => array( 'Content-Type' => 'application/json', 'Authorization' => 'Bearer ' . $body->access_token, 'Client-ID' => $this->options['twitch_client_id'] )
 		        ) );
+
 		        if ( ! is_wp_error( $response ) && isset( $response['response']['code'] ) && 200 === $response['response']['code'] ) {
 		            $profile_data = json_decode( wp_remote_retrieve_body( $response ) );
 
@@ -1693,9 +1701,11 @@ class Heateor_Social_Login_Public {
 		}
 
 		// mail.ru
-		if ( isset( $_GET['code'] ) && remove_query_arg( array(
-		     'code' , 'scope' , 'state'
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Mailru' ) { 
+		if ( isset( $_GET['code'] ) && in_array( remove_query_arg( array(
+			'code',
+			'state',
+			'scope'
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ), array( home_url() . '/HeateorSlAuth/Mailru', home_url() . '/heateorslauth/mailru' ) ) ) { 
 		    $post_data = array(
 		        'grant_type' => 'authorization_code',
 		        'code' => esc_attr( trim( $_GET['code'] ) ),
@@ -1757,11 +1767,11 @@ class Heateor_Social_Login_Public {
 		}
 
 		// reddit
-		if ( isset( $_GET['code'] ) && remove_query_arg( array(
-		    'code',
-		    'state',
-		    'scope'
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Reddit' ) {
+		if ( isset( $_GET['code'] ) && in_array( remove_query_arg( array(
+			'code',
+			'state',
+			'scope'
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ), array( home_url() . '/HeateorSlAuth/Reddit', home_url() . '/heateorslauth/reddit' ) ) ) {
 			$reddit_login_state  = esc_attr( trim( $_GET['state'] ) );
 			if ( ( $reddit_redirect_url = get_user_meta( $reddit_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
 		    	return;
@@ -1820,11 +1830,11 @@ class Heateor_Social_Login_Public {
 		}
 
 		// Disqus
-		if ( isset( $_GET['code'] ) && remove_query_arg( array(
-		    'code',
-		    'scope',
-		    'state'
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Disqus' ) { 
+		if ( isset( $_GET['code'] ) && in_array( remove_query_arg( array(
+			'code',
+			'state',
+			'scope'
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ), array( home_url() . '/HeateorSlAuth/Disqus', home_url() . '/heateorslauth/disqus' ) ) ) { 
 		    $disqus_login_state  = esc_attr( trim( $_GET['state'] ) );
 			if ( ( $disqus_redirect_url = get_user_meta( $disqus_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
 		    	return;
@@ -1883,10 +1893,10 @@ class Heateor_Social_Login_Public {
 		}
 
 		// foursquare
-		if ( isset( $_GET['code'] ) && remove_query_arg( array(
-		    'code',
-		    'state'
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Foursquare' ) {
+		if ( isset( $_GET['code'] ) && in_array( remove_query_arg( array(
+			'code',
+			'state'
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ), array( home_url() . '/HeateorSlAuth/Foursquare', home_url() . '/heateorslauth/foursquare' ) ) ) {
 			$foursquare_login_state  = esc_attr( trim( $_GET['state'] ) );
 			if ( ( $foursquare_redirect_url = get_user_meta( $foursquare_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
 		    	return;
@@ -1944,11 +1954,11 @@ class Heateor_Social_Login_Public {
 		}
 
 		// Dropbox
-		if ( isset( $_GET['code'] ) && remove_query_arg( array(
-		    'code',
-		    'scope',
-		    'state'
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Dropbox' ) { 
+		if ( isset( $_GET['code'] ) && in_array( remove_query_arg( array(
+			'code',
+			'state',
+			'scope'
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ), array( home_url() . '/HeateorSlAuth/Dropbox', home_url() . '/heateorslauth/dropbox' ) ) ) { 
 		    $dropbox_login_state  = esc_attr( trim( $_GET['state'] ) );
 			if ( ( $dropbox_redirect_url = get_user_meta( $dropbox_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
 		    	return;
@@ -2102,10 +2112,10 @@ class Heateor_Social_Login_Public {
 		}
 
 		// windows live
-		if ( isset( $_GET['code'] ) && remove_query_arg( array(
-		    'code',
-		    'state'
-		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ) == home_url() . '/HeateorSlAuth/Live' ) {
+		if ( isset( $_GET['code'] ) && in_array( remove_query_arg( array(
+			'code',
+			'state'
+		), html_entity_decode( esc_url( $this->get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ) ) ), array( home_url() . '/HeateorSlAuth/Live', home_url() . '/heateorslauth/live' ) ) ) {
 			$live_login_state  = esc_attr( trim( $_GET['state'] ) );
 			if ( ( $live_redirect_url = get_user_meta( $live_login_state, 'heateor_sl_redirect_to', true ) ) === false ) {
 		    	return;
@@ -2187,6 +2197,10 @@ class Heateor_Social_Login_Public {
 
 		    if ( ! is_wp_error( $response ) && isset( $response['response']['code'] ) && 200 === $response['response']['code'] ) {
 		        $body     = json_decode( wp_remote_retrieve_body( $response ) );
+		        $vk_email = "";
+		        if ( isset( $body->email ) ) {
+		        	$vk_email = $body->email;
+		        }
 		        $response = wp_remote_get( "https://api.vk.com/method/users.get?user_id=" . $body->user_id . "&fields=first_name,last_name,nickname,screen_name,photo_rec,photo_big,verified&v=5.199&access_token=" . $body->access_token, array(
 			            'timeout' => 15 
 			        )
@@ -2194,7 +2208,9 @@ class Heateor_Social_Login_Public {
 		    	if ( ! is_wp_error( $response ) && isset( $response['response']['code'] ) && 200 === $response['response']['code'] ) {
 		            $profile_data = json_decode( wp_remote_retrieve_body( $response ) );
 		            if ( is_object( $profile_data ) && isset( $profile_data->response ) && is_array( $profile_data->response ) && isset( $profile_data->response[0]->id ) ) {
-		                $profile_data          = $this->sanitize_profile_data( ( array )$profile_data->response[0], 'vkontakte' );
+		                $profile_data 		   = ( array )$profile_data->response[0];
+		                $profile_data['email'] = $vk_email;
+		                $profile_data          = $this->sanitize_profile_data( $profile_data, 'vkontakte' );
 		                $profile_data['state'] = $vk_login_state;
 		                $response = $this->user_auth( $profile_data, 'vkontakte', $vk_redirect_url );
 		                if ( $response == 'show form' ) {
@@ -2895,7 +2911,7 @@ class Heateor_Social_Login_Public {
 			}
 
 			do_action( 'heateor_sl_user_successfully_created', $user_id, $user_data, $profile_data );
-			do_action( 'user_register', $user_id, $user_data );
+			
 			return $user_id;
 		}
 		return false;
