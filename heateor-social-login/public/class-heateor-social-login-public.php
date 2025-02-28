@@ -3553,10 +3553,7 @@ class Heateor_Social_Login_Public {
 			$temp['avatar'] = isset( $temp_profile_data->snippet ) && isset( $temp_profile_data->snippet->thumbnails) && isset( $temp_profile_data->snippet->thumbnails->default ) && isset( $temp_profile_data->snippet->thumbnails->default->url) && $this->validate_url( $temp_profile_data->snippet->thumbnails->default->url) !== false ? trim( $temp_profile_data->snippet->thumbnails->default->url) : '';
 		} elseif ( $provider == 'vkontakte' ) {
 		    $temp['id']           = isset( $profile_data['id'] ) ? sanitize_text_field( $profile_data['id'] ) : '';
-		    $temp['email']        = '';
-		    if ( isset( $profile_data['verified'] ) && $profile_data['verified'] == 1 && isset( $profile_data['email'] ) && $profile_data['email'] != '' ) {
-		    	$temp['email']    = sanitize_email( $profile_data['email'] );
-		    }
+		    $temp['email']    	  = $profile_data['email'] ? sanitize_email( $profile_data['email'] ) : '';
 		    $temp['name']         = '';
 		    $temp['username']     = isset( $profile_data['screen_name'] ) ? $profile_data['screen_name'] : '';
 		    $temp['first_name']   = isset( $profile_data['first_name'] ) ? $profile_data['first_name'] : '';

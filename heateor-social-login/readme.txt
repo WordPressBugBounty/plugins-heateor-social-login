@@ -4,7 +4,7 @@ Donate link: https://www.heateor.com/donate?action=Heateor+Social+Login+for+Word
 Tags: facebook login, twitter login, x, x login, linkedin login, google login, vkontakte login, steam login, line login, instagram login, microsoft login (windows live login), wordpress login, yahoo login, dribbble login, spotify login, kakao login, github login, twitch login, dropbox login, foursquare login, disqus login, reddit login, discord login, amazon login, stack overflow login, stackoverflow login, mail.ru login, mailru login, mail ru login, odnoklassniki login, yandex login, odnoklassniki, yandex, odnoklassniki login button, yandex login button, youtube login, youtube signin, social plugin, profile data, social analytics, online identity, social profile storage, single sign-on
 Requires at least: 2.5.0
 Tested up to: 6.7.2
-Stable tag: 1.1.37
+Stable tag: 1.1.38
 License: GPLv2 or later
 
 One click login and registration via Facebook, Twitter, Linkedin, Google and 23 others.
@@ -114,8 +114,10 @@ Yes, we can help you with it. Just drop an email at support[ at ]heateor[ dot ]c
 4. **Social Login - WooCommerce checkout page**: Social Login button at WooCommerce checkout page
 
 == Changelog ==
-= 1.1.37 [28 February 2025] =
+= 1.1.38 [28 February 2025] =
 * [Bugfix] Email was not being fetched with the other profile data, via Vkontakte login
+
+= 1.1.37 [28 February 2025] =
 * [Bugfix] Odnoklassniki login was broken
 * [Bugfix] user_register action was being triggered twice when using social login
 * [Improvement] Performance improvements
@@ -527,7 +529,9 @@ Yes, we can help you with it. Just drop an email at support[ at ]heateor[ dot ]c
 * [Improvement] Minor improvements
 
 = 1.1.37 [28 February 2025] =
-* [Bugfix] Email was not being fetched with the other profile data, via Vkontakte login
 * [Bugfix] Odnoklassniki login was broken
 * [Bugfix] user_register action was being triggered twice when using social login
 * [Improvement] Performance improvements
+
+= 1.1.38 [28 February 2025] =
+* [Bugfix] Email was not being fetched with the other profile data, via Vkontakte login
