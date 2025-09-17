@@ -3,8 +3,8 @@ Contributors: Heateor, the_champ
 Donate link: https://www.heateor.com/donate?action=Heateor+Social+Login+for+WordPress
 Tags: facebook login, twitter login, x, x login, linkedin login, google login, vkontakte login, steam login, line login, instagram login, microsoft login (windows live login), wordpress login, yahoo login, dribbble login, spotify login, kakao login, github login, twitch login, dropbox login, foursquare login, disqus login, reddit login, discord login, amazon login, stack overflow login, stackoverflow login, mail.ru login, mailru login, mail ru login, odnoklassniki login, yandex login, odnoklassniki, yandex, odnoklassniki login button, yandex login button, youtube login, youtube signin, social plugin, profile data, social analytics, online identity, social profile storage, single sign-on
 Requires at least: 2.5.0
-Tested up to: 6.7.2
-Stable tag: 1.1.38
+Tested up to: 6.8.2
+Stable tag: 1.1.39
 License: GPLv2 or later
 
 One click login and registration via Facebook, Twitter, Linkedin, Google and 23 others.
@@ -114,6 +114,12 @@ Yes, we can help you with it. Just drop an email at support[ at ]heateor[ dot ]c
 4. **Social Login - WooCommerce checkout page**: Social Login button at WooCommerce checkout page
 
 == Changelog ==
+= 1.1.39 [17 September 2025] =
+* [Improvement] Updated the Facebook SDK and Facebook API being used throughout the plugin to the latest version 23.0
+* [Improvement] Improvements in Vkontakte login
+* [Improvement] Updated the Vkontakte oauth API being used to the latest version 5.199
+* [Improvement] Themes of <a target="_blank" href="https://www.heateor.com/social-login-buttons/">Social Login Buttons</a> add-on were not being applied to the social linking icons
+
 = 1.1.38 [28 February 2025] =
 * [Bugfix] Email was not being fetched with the other profile data, via Vkontakte login
 
@@ -535,3 +541,9 @@ Yes, we can help you with it. Just drop an email at support[ at ]heateor[ dot ]c
 
 = 1.1.38 [28 February 2025] =
 * [Bugfix] Email was not being fetched with the other profile data, via Vkontakte login
+
+= 1.1.39 [17 September 2025] =
+* [Improvement] Updated the Facebook SDK and Facebook API being used throughout the plugin to the latest version 23.0
+* [Improvement] Improvements in Vkontakte login
+* [Improvement] Updated the Vkontakte oauth API being used to the latest version 5.199
+* [Improvement] Themes of <a target="_blank" href="https://www.heateor.com/social-login-buttons/">Social Login Buttons</a> add-on were not being applied to the social linking icons

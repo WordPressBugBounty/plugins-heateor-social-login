@@ -631,7 +631,7 @@ class Heateor_Social_Login_Public {
 						// save referrer URL in state
 						update_user_meta( $vk_login_state, 'heateor_sl_redirect_to', isset( $_GET['heateor_sl_redirect_to'] ) ? esc_url( trim( $_GET['heateor_sl_redirect_to'] ) ) : home_url() );
 					}
-					wp_redirect( "https://oauth.vk.com/authorize?client_id=" . $this->options['vk_key'] . "&display=page&scope=email&response_type=code&v=5.131&state=" . $vk_login_state . "&redirect_uri=" . $site_url_for_callback );
+					wp_redirect( "https://oauth.vk.ru/authorize?client_id=" . $this->options['vk_key'] . "&display=page&scope=email&response_type=code&v=5.199&state=" . $vk_login_state . "&redirect_uri=" . $site_url_for_callback );
 					die;
 				}
 			}
@@ -1580,7 +1580,7 @@ class Heateor_Social_Login_Public {
 				        'client_id' => $this->options['fb_key'],
 				        'client_secret' => $this->options['fb_secret'] 
 				    );
-				    $response = wp_remote_post( "https://graph.facebook.com/v19.0/oauth/access_token", array(
+				    $response = wp_remote_post( "https://graph.facebook.com/v23.0/oauth/access_token", array(
 				        'method' => 'POST',
 				        'timeout' => 15,
 				        'redirection' => 5,
@@ -2183,7 +2183,7 @@ class Heateor_Social_Login_Public {
 		        'client_id' => $this->options['vk_key'],
 		        'client_secret' => $this->options['vk_secure_key'] 
 		    );
-		    $response = wp_remote_post( "https://oauth.vk.com/access_token", array(
+		    $response = wp_remote_post( "https://oauth.vk.ru/access_token", array(
 		        'method' => 'POST',
 		        'timeout' => 15,
 		        'redirection' => 5,
@@ -2201,7 +2201,7 @@ class Heateor_Social_Login_Public {
 		        if ( isset( $body->email ) ) {
 		        	$vk_email = $body->email;
 		        }
-		        $response = wp_remote_get( "https://api.vk.com/method/users.get?user_id=" . $body->user_id . "&fields=first_name,last_name,nickname,screen_name,photo_rec,photo_big,verified&v=5.199&access_token=" . $body->access_token, array(
+		        $response = wp_remote_get( "https://api.vk.ru/method/users.get?user_id=" . $body->user_id . "&fields=first_name,last_name,nickname,screen_name,photo_rec,photo_big,verified&v=5.199&access_token=" . $body->access_token, array(
 			            'timeout' => 15 
 			        )
 		    	);
@@ -2445,6 +2445,10 @@ class Heateor_Social_Login_Public {
 			$twitterRedirect = urlencode( $this->get_valid_url( $this->get_http() . $_SERVER["HTTP_HOST"] . html_entity_decode( esc_url( remove_query_arg( array( 'linked' ) ) ) ) ) );
 			$currentPageUrl = urldecode( $twitterRedirect );
 			$html .= '<script>function heateorSlLoadEvent( e ) {var t=window.onload;if ( typeof window.onload!="function" ) {window.onload=e} else {window.onload=function() {t();e()}}} var heateorSlCloseIconPath = "' . plugins_url( 'images/close.png', __FILE__ ) . '";</script>';
+			if($this->is_plugin_active("heateor-social-login-buttons/heateor-social-login-buttons.php")){
+				global $heateor_slb_options;
+				wp_enqueue_style( 'heateor_slb_frontend_css', plugins_url() .'/heateor-social-login-buttons/css/' . 'hsl-theme' . $heateor_slb_options['theme'] . '.css', false, HEATEOR_SOCIAL_LOGIN_BUTTONS_VERSION );
+			}
 			$website_url = esc_url( home_url() );
 			$html .= '<script>var heateorSlLinkingRedirection = "' . ( $this->get_http() . $_SERVER["HTTP_HOST"] . html_entity_decode( esc_url( remove_query_arg( array( 'linked' ) ) ) ) ) . '"; var heateorSlSiteUrl = "' . $website_url . '", heateorSlVerified = 0, heateorSlAjaxUrl = "' . admin_url() . 'admin-ajax.php", heateorSlPopupTitle = "", heateorSlEmailPopup = 0, heateorSlEmailAjaxUrl = "' . admin_url() . 'admin-ajax.php", heateorSlEmailPopupTitle = "", heateorSlEmailPopupErrorMsg = "", heateorSlEmailPopupUniqueId = "", heateorSlEmailPopupVerifyMessage = "", heateorSlCurrentPageUrl = "' . $twitterRedirect . '";</script>';
 			// scripts used for common Social Login functionality
@@ -2504,36 +2508,89 @@ class Heateor_Social_Login_Public {
 							if (count( $existing_providers ) > 0 ) {
 	                        $html .= '<tr>
 	                            <td colspan="2"><strong>' . $this->options['scl_title'] . '</strong><br/>';
-								foreach( $existing_providers as $provider ) {
-									$icons_container .= '<li><i ';
-									// id
-									if ( $provider == 'google' ) {
-										$icons_container .= 'id="heateorSl' . ucfirst( $provider ) . 'Button" ';
-									}
-									// class
-									$icons_container .= 'class="heateorSlLogin heateorSl' . ucfirst( $provider ) . 'Background heateorSl' . ucfirst( $provider ) . 'Login" ';
-									$icons_container .= 'alt="Login with ';
-									$icons_container .= ucfirst( $provider );
-									$icons_container .= '" title="Login with ';
-									if ( $provider == 'live' ) {
-										$icons_container .= 'Windows Live';
+	                            if($this->is_plugin_active("heateor-social-login-buttons/heateor-social-login-buttons.php")){
+	                            	global $heateor_slb_options;
+									if ( $heateor_slb_options['theme'] != '2' ) {
+		                            	foreach($existing_providers as $provider){
+											$icons_container .= '<li><div class="heateorSlLoginButtonBackground heateorSl' . ucfirst( $provider ) . 'LoginBackground" data-network="' . $provider . '" onclick="heateorSlInitiateLogin(this, \'' . $provider . '\')" alt="Login with ' . ucfirst( $provider ) . '"><i ';
+											// id
+											if ( $provider == 'google' ) {
+												$icons_container .= 'id="heateorSl' . ucfirst( $provider ) . 'Button" ';
+											}
+											// class
+											$icons_container .= 'class="heateorSlLogin heateorSl' . ucfirst( $provider ) . 'Background heateorSl' . ucfirst( $provider ) . 'Login" ';
+											$icons_container .= 'alt="Login with ';
+											$icons_container .= ucfirst( $provider );
+											$icons_container .= '" data-network="' . $provider . '" title="' . $heateor_slb_options['icon_text'] . ' ';
+											if ( $provider == 'live' ) {
+												$icons_container .= 'Windows Live';
+											} else {
+												$icons_container .= ucfirst( $provider );
+											}
+											if ( current_filter() == 'comment_form_top' || current_filter() == 'comment_form_must_log_in_after' ) {
+												$icons_container .= '" onclick="heateorSlCommentFormLogin = true; heateorSlInitiateLogin(this, \'' . $provider . '\')" >';
+											} else {
+												$icons_container .= '" onclick="heateorSlInitiateLogin(this, \'' . $provider . '\')" >';
+											}
+											$icons_container .= '<ss style="display:block" class="heateorSlLoginSvg heateorSl' . ucfirst( $provider ) . 'LoginSvg"></ss></i><div class="heateorSlLoginButtonText">' . $heateor_slb_options['icon_text'] . ' <div class="heateorSlLoginProvider">' . ucfirst( $provider ) . '</div></div></li>';
+										}
 									} else {
+										foreach($existing_providers as $provider){
+											$icons_container .= '<li class="heateorSl' . ucfirst( $provider ) . 'Li"  data-network="' . $provider . '" alt="Login with ' . ucfirst( $provider ) . '" onclick="heateorSlInitiateLogin(this, \'' . $provider . '\')"><i ';
+											// id
+											if ( $provider == 'google' ) {
+												$icons_container .= 'id="heateorSl' . ucfirst( $provider ) . 'Button" ';
+											}
+											// class
+											$icons_container .= 'class="heateorSlLogin heateorSl' . ucfirst( $provider ) . 'Background heateorSl' . ucfirst( $provider ) . 'Login" ';
+											$icons_container .= 'alt="Login with ';
+											$icons_container .= ucfirst( $provider );
+											$icons_container .= '" data-network="' . $provider . '" title="' . $heateor_slb_options['icon_text'] . ' ';
+											if ( $provider == 'live' ) {
+												$icons_container .= 'Windows Live';
+											} else {
+												$icons_container .= ucfirst( $provider );
+											}
+											if ( current_filter() == 'comment_form_top' || current_filter() == 'comment_form_must_log_in_after' ) {
+												$icons_container .= '" onclick="heateorSlCommentFormLogin = true; heateorSlInitiateLogin(this, \'' . $provider . '\')" >';
+											} else {
+												$icons_container .= '" onclick="heateorSlInitiateLogin(this, \'' . $provider . '\')" >';
+											}
+											$icons_container .= '<ss style="display:block" class="heateorSlLoginSvg heateorSl' . ucfirst( $provider ) . 'LoginSvg"></ss></i></li>';
+										}
+									}
+	                            } else {
+	                            	foreach( $existing_providers as $provider ) {
+										$icons_container .= '<li><i ';
+										// id
+										if ( $provider == 'google' ) {
+											$icons_container .= 'id="heateorSl' . ucfirst( $provider ) . 'Button" ';
+										}
+										// class
+										$icons_container .= 'class="heateorSlLogin heateorSl' . ucfirst( $provider ) . 'Background heateorSl' . ucfirst( $provider ) . 'Login" ';
+										$icons_container .= 'alt="Login with ';
 										$icons_container .= ucfirst( $provider );
+										$icons_container .= '" title="Login with ';
+										if ( $provider == 'live' ) {
+											$icons_container .= 'Windows Live';
+										} else {
+											$icons_container .= ucfirst( $provider );
+										}
+										if (current_filter() == 'comment_form_top' ) {
+											$icons_container .= '" onclick="heateorSlCommentFormLogin = true; heateorSlInitiateLogin( this, \'' . $provider . '\' )" >';
+										} else {
+											$icons_container .= '" onclick="heateorSlInitiateLogin( this, \'' . $provider . '\' )" >';
+										}
+										if ( $provider == 'facebook' ) {
+											$icons_container .= '<div class="heateorSlFacebookLogoContainer">';
+										}
+										$icons_container .= '<div class="heateorSlLoginSvg heateorSl' . ucfirst( $provider ) . 'LoginSvg"></div>';
+										if ( $provider == 'facebook' ) {
+											$icons_container .= '</div>';
+										}
+										$icons_container .= '</i></li>';
 									}
-									if (current_filter() == 'comment_form_top' ) {
-										$icons_container .= '" onclick="heateorSlCommentFormLogin = true; heateorSlInitiateLogin( this, \'' . $provider . '\' )" >';
-									} else {
-										$icons_container .= '" onclick="heateorSlInitiateLogin( this, \'' . $provider . '\' )" >';
-									}
-									if ( $provider == 'facebook' ) {
-										$icons_container .= '<div class="heateorSlFacebookLogoContainer">';
-									}
-									$icons_container .= '<div class="heateorSlLoginSvg heateorSl' . ucfirst( $provider ) . 'LoginSvg"></div>';
-									if ( $provider == 'facebook' ) {
-										$icons_container .= '</div>';
-									}
-									$icons_container .= '</i></li>';
-								}
+	                            }
 								$icons_container .= '</ul>';
 								if ( isset( $this->options['gdpr_enable'] ) && $this->options['gdpr_placement'] == 'below' ) {
 									$icons_container .= '<div style="clear:both"></div>';
@@ -3559,7 +3616,7 @@ class Heateor_Social_Login_Public {
 		    $temp['first_name']   = isset( $profile_data['first_name'] ) ? $profile_data['first_name'] : '';
 		    $temp['last_name']    = isset( $profile_data['last_name'] ) ? $profile_data['last_name'] : '';
 		    $temp['bio']          = '';
-		    $temp['link']         = $temp['id'] != '' ? 'https://vk.com/id' . $temp['id'] : '';
+		    $temp['link']         = $temp['id'] != '' ? 'https://vk.ru/id' . $temp['id'] : '';
 		    $temp['avatar']       = isset( $profile_data['photo_rec'] ) && $this->validate_url( $profile_data['photo_rec'] ) !== false ? trim( $profile_data['photo_rec'] ) : '';
 		    $temp['large_avatar'] = isset( $profile_data['photo_big'] ) && $this->validate_url( $profile_data['photo_big'] ) !== false ? trim( $profile_data['photo_big'] ) : '';
 		} elseif ( $provider == 'line' ) {
